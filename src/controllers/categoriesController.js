@@ -1,4 +1,5 @@
 import db from '../database.js';
+import chalk from 'chalk';
 
 export async function getCategories(req, res) {
   try {
@@ -7,7 +8,7 @@ export async function getCategories(req, res) {
     res.send(categories.rows);
   } catch (e) {
     console.log(chalk.bold.red('Erro ao buscar categorias', e));
-    res.status(422).send('Erro ao listar as categorias no banco', e);
+    res.status(422).send(encodeURI);
   }
 }
 
@@ -18,6 +19,6 @@ export async function postCategorie(req, res) {
     res.sendStatus(201);
   } catch (e) {
     console.log(chalk.bold.red('Erro ao inserir categoria', e));
-    res.status(422).send('Erro ao listar as categorias no banco', e);
+    res.status(422).send(e);
   }
 }

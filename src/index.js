@@ -12,8 +12,6 @@ app.use(express.json());
 app.use(cors());
 app.use(router);
 
-const HOST = 'localhost';
-
-app.listen(process.env.DOOR, HOST, () => {
+app.listen(process.env.DOOR, process.env.HOST, () => {
   console.log(chalk.bold.green(`Server running on ${process.env.DOOR}`));
 });
