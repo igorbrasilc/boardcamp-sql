@@ -19,7 +19,7 @@ export async function gameValidation(req, res, next) {
 
   const validation = gameSchema.validate(objToValidate);
 
-  if (validation.error) return res.sendStatus(400);
+  if (validation.error) return res.status(400).send(validation.error);
 
   try {
     const categorySearch = await db.query('SELECT id FROM categories WHERE $1 = id', [categoryId]);
