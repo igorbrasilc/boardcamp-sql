@@ -9,7 +9,7 @@ const customerSchema = Joi.object({
   cpf: Joi.string().regex(/^\d{11}$/).required(),
   phone: Joi.string().regex(/^\d{10}$|^\d{11}$/).required(),
   name: Joi.string().required(),
-  birthday: Joi.date().format(['YYYY-MM-DD', 'DD-MM-YYYY', 'MM-DD-YYYY']).raw().utc().required()
+  birthday: Joi.date().format(['YYYY-MM-DD']).raw().utc().required()
 });
 
 export async function customerValidation (req, res, next) {
@@ -52,6 +52,10 @@ export async function customerUpdateValidation (req, res, next) {
     const customer = await db.query('SELECT * FROM customers WHERE id = $1;', [id]);
 
     if (customer.rows.length === 0) return res.sendStatus(404);
+
+    const cpfValidation = await db.query('SELECT * FROM customers WHERE id != $1 AND cpf = $2;', [id, cpf]);
+
+    if (cpfValidation.rows.length > 0) return res.status(409).send('CPF já existe em outro usuário');
 
   } catch (e) {
     console.log(chalk.bold.red('Erro ao verificar clientes existentes', e));
