@@ -33,7 +33,7 @@ export async function getGames(req, res) {
       res.send(games.rows);
     }
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao buscar jogos', e));
+    console.log('Erro ao buscar jogos', e);
     res.status(422).send(e);
   }
 }
@@ -51,7 +51,7 @@ export async function postGame(req, res) {
 
     res.sendStatus(201);
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao buscar jogos', e));
+    console.log('Erro ao buscar jogos', e);
     res.status(422).send(e);
   }
 };

@@ -7,7 +7,7 @@ export async function getCategories(req, res) {
     console.log(categories);
     res.send(categories.rows);
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao buscar categorias', e));
+    console.log('Erro ao buscar categorias', e);
     res.status(422).send(encodeURI);
   }
 }
@@ -18,7 +18,7 @@ export async function postCategorie(req, res) {
     await db.query('INSERT INTO categories (name) VALUES ($1)', [name]);
     res.sendStatus(201);
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao inserir categoria', e));
+    console.log('Erro ao inserir categoria', e);
     res.status(422).send(e);
   }
 }

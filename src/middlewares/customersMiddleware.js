@@ -29,7 +29,7 @@ export async function customerValidation (req, res, next) {
     if (customer.rows.length !== 0) return res.sendStatus(409);
 
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao verificar clientes existentes', e));
+    console.log('Erro ao verificar clientes existentes', e);
     res.status(422).send(e);
   }
 
@@ -58,7 +58,7 @@ export async function customerUpdateValidation (req, res, next) {
     if (cpfValidation.rows.length > 0) return res.status(409).send('CPF já existe em outro usuário');
 
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao verificar clientes existentes', e));
+    console.log('Erro ao verificar clientes existentes', e);
     res.status(422).send(e);
   }
 

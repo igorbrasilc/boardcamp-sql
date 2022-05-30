@@ -24,7 +24,7 @@ export async function postRental(req, res) {
     res.sendStatus(201);
 
     } catch (e) {
-    console.log(chalk.bold.red('Erro ao inserir aluguel', e));
+    console.log('Erro ao inserir aluguel', e);
     res.status(422).send(e);
   }
 }
@@ -55,7 +55,7 @@ export async function getRentals(req, res) {
 
     res.send(rentalsFormatted);
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao pegar alugueis', e));
+    console.log('Erro ao pegar alugueis', e);
     res.status(422).send(e);
   }
 }
@@ -117,7 +117,7 @@ export async function finishRental(req, res) {
     res.sendStatus(200);
 
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao finalizar aluguel', e));
+    console.log('Erro ao finalizar aluguel', e);
     res.status(422).send(e);
   }
 }
@@ -130,7 +130,7 @@ export async function deleteRental(req, res) {
 
     res.sendStatus(200);
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao deletar aluguel', e));
+    console.log('Erro ao deletar aluguel', e);
     res.status(422).send(e);
   }
 }

@@ -32,7 +32,7 @@ export async function gameValidation(req, res, next) {
 
     next();
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao buscar jogos', e));
+    console.log('Erro ao buscar jogos', e);
     res.status(422).send(e);
   }
 }

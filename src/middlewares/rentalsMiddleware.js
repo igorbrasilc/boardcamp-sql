@@ -20,7 +20,7 @@ export async function rentalValidation(req, res, next) {
 
     next();
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao pegar alugueis', e));
+    console.log('Erro ao pegar alugueis', e);
     res.status(422).send(e);
   }
 }
@@ -38,7 +38,7 @@ export async function finishRentalValidation(req, res, next) {
 
     next();
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao finalizar aluguel', e));
+    console.log('Erro ao finalizar aluguel', e);
     res.status(422).send(e);
   }
 }
@@ -55,7 +55,7 @@ export async function deleteValidation(req, res, next) {
 
     next();
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao deletar aluguel', e));
+    console.log('Erro ao deletar aluguel', e);
     res.status(422).send(e);
   }
 }

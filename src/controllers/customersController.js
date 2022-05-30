@@ -14,7 +14,7 @@ export async function getCustomers(req, res) {
       res.send(customers.rows);
     }
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao buscar clientes', e));
+    console.log('Erro ao buscar clientes', e);
     res.status(422).send(e);
   }
 }
@@ -29,7 +29,7 @@ export async function getCustomerById(req, res) {
 
     res.send(customer.rows[0]);
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao buscar clientes', e));
+    console.log('Erro ao buscar clientes', e);
     res.status(422).send(e);
   }
 }
@@ -48,7 +48,7 @@ export async function postCustomer(req, res) {
 
     res.sendStatus(201);
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao inserir cliente', e));
+    console.log('Erro ao inserir cliente', e);
     res.status(422).send(e);
   }
 }
@@ -72,7 +72,7 @@ export async function updateCustomer(req, res) {
 
     res.sendStatus(200);
   } catch (e) {
-    console.log(chalk.bold.red('Erro ao atualizar cliente', e));
+    console.log('Erro ao atualizar cliente', e);
     res.status(422).send(e);
   }
 }
