@@ -1,6 +1,5 @@
 import db from '../database.js';
 import dayjs from 'dayjs';
-import chalk from 'chalk';
 
 export async function postRental(req, res) {
   const {customerId, gameId, daysRented} = req.body;

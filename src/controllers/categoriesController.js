@@ -1,5 +1,4 @@
 import db from '../database.js';
-import chalk from 'chalk';
 
 export async function getCategories(req, res) {
   try {

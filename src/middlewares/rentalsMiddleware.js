@@ -1,5 +1,4 @@
 import db from '../database.js';
-import chalk from 'chalk';
 
 export async function rentalValidation(req, res, next) {
   const {customerId, gameId, daysRented} = req.body;

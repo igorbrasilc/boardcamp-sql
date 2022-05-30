@@ -1,7 +1,6 @@
 import db from '../database.js';
 import joi from 'joi';
 import JoiDate from '@joi/date';
-import chalk from 'chalk';
 
 const Joi = joi.extend(JoiDate);
 
