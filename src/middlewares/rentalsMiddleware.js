@@ -24,3 +24,38 @@ export async function rentalValidation(req, res, next) {
     res.status(422).send(e);
   }
 }
+
+export async function finishRentalValidation(req, res, next) {
+
+  const {id} = req.params;
+
+  try {
+    const rentalSearch = await db.query('SELECT * FROM rentals WHERE rentals.id = $1;', [id]);
+
+    if (rentalSearch.rows.length === 0) return res.sendStatus(404);
+
+    if (rentalSearch.rows[0].returnDate != null) return res.sendStatus(400);
+
+    next();
+  } catch (e) {
+    console.log(chalk.bold.red('Erro ao finalizar aluguel', e));
+    res.status(422).send(e);
+  }
+}
+
+export async function deleteValidation(req, res, next) {
+  const {id} = req.params;
+
+  try {
+    const rentalSearch = await db.query('SELECT * FROM rentals WHERE id = $1;', [id]);
+
+    if (rentalSearch.rows.length === 0) return res.sendStatus(404);
+
+    if (rentalSearch.rows[0].returnDate != null) return res.sendStatus(400);
+
+    next();
+  } catch (e) {
+    console.log(chalk.bold.red('Erro ao deletar aluguel', e));
+    res.status(422).send(e);
+  }
+}

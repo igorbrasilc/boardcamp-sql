@@ -86,3 +86,51 @@ function format (rentals) {
   })
 }
 
+export async function finishRental(req, res) {
+  const {id} = req.params;
+
+  const returnDate = dayjs().format('YYYY-MM-DD');
+
+  const query = `
+  UPDATE rentals
+  SET
+    "returnDate" = $1,
+    "delayFee" = $2
+  WHERE
+    id = $3
+  `;
+
+  try {
+    const rentalSearch = await db.query('SELECT * FROM rentals WHERE id = $1;', [id]);
+
+    const milissecDifference = Math.abs(new Date(returnDate).getTime() - new Date(rentalSearch.rows[0].rentDate).getTime());
+    const daysDifference = milissecDifference/(1000 * 3600 * 24);
+
+    let delayFee = 0;
+
+    if (daysDifference > rentalSearch.rows[0].daysRented) {
+      delayFee = daysDifference * (rentalSearch.rows[0].originalPrice / rentalSearch.rows[0].daysRented)
+    };
+
+    await db.query(query, [returnDate, delayFee, id]);
+
+    res.sendStatus(200);
+
+  } catch (e) {
+    console.log(chalk.bold.red('Erro ao finalizar aluguel', e));
+    res.status(422).send(e);
+  }
+}
+
+export async function deleteRental(req, res) {
+  const {id} = req.params;
+
+  try {
+    await db.query('DELETE FROM rentals WHERE id = $1;', [id]);
+
+    res.sendStatus(200);
+  } catch (e) {
+    console.log(chalk.bold.red('Erro ao deletar aluguel', e));
+    res.status(422).send(e);
+  }
+}
