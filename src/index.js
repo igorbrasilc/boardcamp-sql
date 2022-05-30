@@ -11,6 +11,6 @@ app.use(express.json());
 app.use(cors());
 app.use(router);
 
-app.listen(process.env.DOOR, () => {
-  console.log(`Server running on ${process.env.DOOR}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server running on ${process.env.PORT}`);
 });
