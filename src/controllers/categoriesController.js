@@ -3,7 +3,6 @@ import db from '../database.js';
 export async function getCategories(req, res) {
   try {
     const categories = await db.query('SELECT * FROM categories;');
-    console.log(categories);
     res.send(categories.rows);
   } catch (e) {
     console.log('Erro ao buscar categorias', e);
